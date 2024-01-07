@@ -30,13 +30,8 @@ import androidx.recyclerview.widget.RecyclerView
  */
 class LetterAdapter :
     RecyclerView.Adapter<LetterAdapter.LetterViewHolder>() {
-
-    // Generates a [CharRange] from 'A' to 'Z' and converts it to a list
     private val list = ('A').rangeTo('Z').toList()
 
-    /**
-     * Provides a reference for the views needed to display items in your list.
-     */
     class LetterViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val button = view.findViewById<Button>(R.id.button_item)
     }
@@ -45,9 +40,7 @@ class LetterAdapter :
         return list.size
     }
 
-    /**
-     * Creates new views with R.layout.item_view as its template
-     */
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LetterViewHolder {
         val layout = LayoutInflater
                 .from(parent.context)
@@ -57,9 +50,6 @@ class LetterAdapter :
         return LetterViewHolder(layout)
     }
 
-    /**
-     * Replaces the content of an existing view with new data
-     */
     override fun onBindViewHolder(holder: LetterViewHolder, position: Int) {
         val item = list.get(position)
         holder.button.text = item.toString()
@@ -69,10 +59,10 @@ class LetterAdapter :
             intent.putExtra(DetailActivity.LETTER, holder.button.text.toString())
             context.startActivity(intent)
         }
+
     }
 
-    // Setup custom accessibility delegate to set the text read with
-    // an accessibility service
+
     companion object Accessibility : View.AccessibilityDelegate() {
         @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         override fun onInitializeAccessibilityNodeInfo(
